@@ -475,7 +475,9 @@ class Browser(object):
         return res
 
     def _get_html(self):
-        return six.u(self.webframe.toHtml())
+#        return six.u(self.webframe.toHtml())
+# To fix encoding problem concerning Asian languages (git@github.com:hemichael/spynner.git)
+	return unicode(self.webframe.toHtml().toUtf8(), 'utf-8', 'ignore')
 
     def _get_soup(self):
         if not self._html_parser:
